@@ -1,3 +1,5 @@
 #Git ignore rules
 
 node_modules
+
+palindromes
