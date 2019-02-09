@@ -4,20 +4,33 @@ function poppinBottles(cash) {
   var currentBottles = cash / 2;
   var numEmpties = 0;
   var numCaps = 0;
-  var totalBottles = cash / 2;
+  // var totalBottles = currentBottles;
+
+  var tally = {
+    'Total Bottles': currentBottles,
+    'Earned Bottles': {
+      Bottles: 0,
+      Caps: 0
+    }
+
+  };
 
 
   while (currentBottles > 0 || numEmpties >= 2 || numCaps >= 4) {
+    //Drink Pops
     numEmpties += currentBottles;
     numCaps += currentBottles;
     currentBottles = 0;
+
+    //Trade in
     currentBottles = Math.floor(numEmpties / 2) + Math.floor(numCaps / 4);
+    tally['Earned Bottles'].Bottles += Math.floor(numEmpties / 2);
+    tally['Earned Bottles'].Caps += Math.floor(numCaps / 4);
     numEmpties = numEmpties % 2;
     numCaps = numCaps % 4;
-    totalBottles += currentBottles;
+    tally['Total Bottles'] += currentBottles;
   }
-
-  return totalBottles;
+  return tally;
 }
 
 console.log(poppinBottles(cash));
